@@ -1,5 +1,6 @@
 import Doctor from "../models/DoctorSchema.js";
 
+// update doctor data by ID
 export const updateDoctor = async (req, res) => {
   const id = req.params.id;
   try {
@@ -21,6 +22,7 @@ export const updateDoctor = async (req, res) => {
   }
 };
 
+// delete doctor by id
 export const deleteDoctor = async (req, res) => {
   const id = req.params.id;
   try {
@@ -37,10 +39,13 @@ export const deleteDoctor = async (req, res) => {
   }
 };
 
+// get single doctor by id
 export const getSingleDoctor = async (req, res) => {
   const id = req.params.id;
   try {
-    const doctor = await Doctor.findById(id).select("-password");
+    const doctor = await Doctor.findById(id)
+      .populate("reviews")
+      .select("-password");
     res.status(200).json({
       success: true,
       message: "Doctor Found",
@@ -54,6 +59,7 @@ export const getSingleDoctor = async (req, res) => {
   }
 };
 
+// get all doctors list
 export const getAllDoctors = async (req, res) => {
   try {
     const { query } = req.query;
