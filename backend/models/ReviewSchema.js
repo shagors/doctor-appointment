@@ -49,7 +49,7 @@ reviewSchema.statics.calcAverageRatings = async function (doctorId) {
 
   await Doctor.findByIdAndUpdate(doctorId, {
     totalRating: stats[0].numOfRating,
-    averageRatings: stats[0].avgRating,
+    averageRating: stats[0].avgRating,
   });
 };
 
