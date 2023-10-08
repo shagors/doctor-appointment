@@ -2,15 +2,14 @@ import { useState } from "react";
 import signupImg from "../assets/images/signup.gif";
 import { Link, useNavigate } from "react-router-dom";
 import uploadImageToCloudinary from "../utils/uploadCloudinary";
-import { BASE_URL } from "../config";
 import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader";
+import { BASE_URL } from "../config";
 
 const Signup = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewURL, setPreviewURL] = useState("");
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -35,8 +34,8 @@ const Signup = () => {
     setFormData({ ...formData, photo: data.url });
   };
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
+  const submitHandler = async (event) => {
+    event.preventDefault();
     setLoading(true);
     try {
       const res = await fetch(`${BASE_URL}/auth/register`, {
@@ -44,7 +43,7 @@ const Signup = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(),
+        body: JSON.stringify(formData),
       });
       const { message } = await res.json();
 
@@ -81,7 +80,6 @@ const Signup = () => {
             <h3 className="text-headingColor text-[22px] leading-9 font-bold mb-10">
               Create an <span className="text-primaryColor">account</span>
             </h3>
-
             <form onSubmit={submitHandler}>
               <div className="mb-5">
                 <input
@@ -116,7 +114,6 @@ const Signup = () => {
                   className="w-full pr-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer"
                 />
               </div>
-
               <div className="mb-5 flex items-center justify-between">
                 <label className="text-headingColor font-bold text-[16px] leading-7">
                   Are you a:
@@ -144,7 +141,6 @@ const Signup = () => {
                   </select>
                 </label>
               </div>
-
               <div className="mb-5 flex items-center gap-3">
                 {selectedFile && (
                   <figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center">
@@ -173,7 +169,6 @@ const Signup = () => {
                   </label>
                 </div>
               </div>
-
               <div className="mt-7">
                 <button
                   disabled={loading && true}
