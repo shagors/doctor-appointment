@@ -51,8 +51,8 @@ const Signup = () => {
         throw new Error(message);
       }
 
-      setLoading(false);
       toast.success(message);
+      setLoading(false);
       navigate("/login");
     } catch (error) {
       toast.error(error.message);
