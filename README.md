@@ -13,5 +13,5 @@ If you want to run this projects you should install node package with `npm insta
 
 ## Projects Images
 
-![preview img](./project_img/fullstack1.PNG)
-![preview img](./project_img/fullstack2.PNG)
+![preview img](./fullstack1.PNG)
+![preview img](./fullstack2.PNG)
